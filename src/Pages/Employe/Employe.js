@@ -8,6 +8,8 @@ import Swal from 'sweetalert2'
 
 const Employe = () => {
 
+    
+
     const navigate = useNavigate()
 
     const [data, setData] = useState([])
@@ -126,7 +128,7 @@ const Employe = () => {
 
                                         <tr>
                                             <td>
-                                                <img src={i?.image} style={{width:'45px',height:'45px',objectFit:'cover',borderRadius:200}}/>
+                                                <img src={i?.image?i?.image:"https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg"} style={{width:'45px',height:'45px',objectFit:'cover',borderRadius:200}}/>
                                             </td>
                                             <td>{i?.firstName}</td>
                                             <td>{i?.lastName}</td>

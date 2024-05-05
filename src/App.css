@@ -93,8 +93,13 @@ select{
   border: 0px !important;
 }
 
+.bg-warning{
+  background-color: #F9B134 !important;
+}
 
-
+h6{
+  margin-bottom: 0px !important;
+}
 /* Media query for mobile screens */
 @media screen and (max-width: 767px) {
   .set-padding {

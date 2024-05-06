@@ -14,7 +14,7 @@ const AddProduct = () => {
 
 
     
-    const [newData, setNewData] = useState([])
+    const [companyData, setCompanyData] = useState([])
 
 
     useEffect(() => {
@@ -22,7 +22,34 @@ const AddProduct = () => {
 
             axios.get(`${BaseUrl.baseUrl}/company/get`).then(res => {
                 if (res.data.status === 'ok') {
-                    setNewData(res.data.data)
+                    setCompanyData(res.data.data)
+                }
+                else if (res.data.status === 'fail') {
+                    toast('🚩' + res.data.message)
+                }
+
+            }).catch(err => {
+                toast('🚨' + err.message)
+            })
+
+
+        } catch (err) {
+            toast('🚨 Something went wrong!')
+        }
+
+    }, [])
+
+
+    
+    const [brandData, setBrandData] = useState([])
+
+
+    useEffect(() => {
+        try {
+
+            axios.get(`${BaseUrl.baseUrl}/brand/get`).then(res => {
+                if (res.data.status === 'ok') {
+                    setBrandData(res.data.data)
                 }
                 else if (res.data.status === 'fail') {
                     toast('🚩' + res.data.message)
@@ -47,6 +74,7 @@ const AddProduct = () => {
     const [name, setName] = useState(null)
     const [image, setImage] = useState(null)
     const [companyId, setCompanyId] = useState(null)
+    const [brandId, setBrandId] = useState(null)
     const [about, setAbout] = useState(null)
 
 
@@ -59,6 +87,9 @@ const AddProduct = () => {
         }
         else if (!companyId) {
             toast('🚨 Must select company!')
+        }
+        else if (!brandId) {
+            toast('🚨 Must select brand!')
         }
 
         else if (!about) {
@@ -73,6 +104,7 @@ const AddProduct = () => {
                 param.append('name', name)
                 param.append('about', about)
                 param.append('companyId', companyId)
+                param.append('brandId', brandId)
 
 
                 axios.post(`${BaseUrl.baseUrl}/product/create`, param).then(res => {
@@ -138,9 +170,26 @@ const AddProduct = () => {
                         <div className='border border-dark rounded-3 bg-white d-flex align-items-center px-3'>
                             <select class="form-select" aria-label="Default select example" onChange={(e) => { setCompanyId(e.target.value) }}>
                                 <option selected>Select Company</option>
-                                {newData?.length>0?newData.map(i=>{
+                                {companyData?.length>0?companyData.map(i=>{
                                     return(<>
                                     <option value={i?._id}>{i?.companyName}</option>
+                                    </>)
+                                })
+                                
+                                :<p>No data found!</p>}
+                                
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className='col-md-6 mb-4'>
+
+                        <div className='border border-dark rounded-3 bg-white d-flex align-items-center px-3'>
+                            <select class="form-select" aria-label="Default select example" onChange={(e) => { setBrandId(e.target.value) }}>
+                                <option selected>Select Brand</option>
+                                {brandData?.length>0?brandData.map(i=>{
+                                    return(<>
+                                    <option value={i?._id}>{i?.name}</option>
                                     </>)
                                 })
                                 

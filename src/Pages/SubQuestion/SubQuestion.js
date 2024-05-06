@@ -6,7 +6,7 @@ import BaseUrl from "../../BaseUrl";
 import toast from "react-simple-toasts";
 import Swal from "sweetalert2";
 
-const Tasks = () => {
+const SubQuestion = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState([]);
@@ -77,17 +77,17 @@ const Tasks = () => {
   return (
     <div>
       <div>
-        <Header name={"Tasks"} />
+        <Header name={"Sub Question"} />
       </div>
 
       <div className="bg-light rounded-3 p-3  mb-4 me-3">
         <div className="d-flex justify-content-between align-items-start mb-3">
-          <h3>Tasks</h3>
+          <h3>Sub Question</h3>
           <div
             className="p-1 px-3 bg-warning rounded-pill d-flex justify-content-center align-items-center set-shadow"
             style={{ cursor: "pointer" }}
             onClick={() => {
-              navigate("/addtasks");
+              navigate("/addsubQuestion");
             }}
           >
             <h5 className="m-0 p-0">Add</h5>
@@ -99,104 +99,21 @@ const Tasks = () => {
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">Product Image</th>
+                  <th scope="col">#</th>
                   <th scope="col">Product Name</th>
-                  <th scope="col">Company</th>
-                  <th scope="col">About product</th>
+                  <th scope="col">Date</th>
                 </tr>
               </thead>
               <tbody>
 
-                <tr>
-                  <td>
-                    <img
-                      src={''}
-                      style={{
-                        width: "45px",
-                        height: "45px",
-                        objectFit: "cover",
-                        borderRadius: 200,
-                      }}
-                    />
-                  </td>
-                  <td>Name</td>
-                  <td>Company</td>
-                  <td>About</td>
-                  <td>
-                    <div className="d-flex align-items-center gap-3">
-                      
-                      <button
-                        title="Add Question"
-                        className="btn btn-outline-warning btn-sm"
-                        onClick={() => {
-                          navigate(`/question`);
-                        }}
-                      >
-                        <i className="bi bi-question-octagon-fill fs-6"></i>
-                      </button>
-                      <button
-                        title="Edit"
-                        className="btn btn-outline-info btn-sm"
-                        onClick={() => {
-                          navigate(`/edittasks/2`);
-                        }}
-                      >
-                        <i className="bi bi-pencil fs-6"></i>
-                      </button>
-                      <button
-                        title="Delete"
-                        className="btn btn-outline-danger btn-sm"
-                        onClick={() => {
-                          del();
-                        }}
-                      >
-                        <i className="bi bi-trash-fill"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-
-                {data?.length > 0 ? (
-                  data?.map((i) => {
-                    return (
-                      <>
-                        <tr>
-                          <td>
-                            <img
-                              src={i?.image}
-                              style={{
-                                width: "45px",
-                                height: "45px",
-                                objectFit: "cover",
-                                borderRadius: 200,
-                              }}
-                            />
-                          </td>
-                          <td>{i?.name}</td>
-                          <td>{i?.companyId?.companyName}</td>
-                          <td>{i?.about}</td>
+              <tr>
+                          <td>1</td>
+                          <td>Name</td>
+                          <td>Company</td>
                           <td>
                             <div className="d-flex align-items-center gap-3">
                               <button
-                                title="Assign to Team"
-                                className="btn btn-outline-success btn-sm"
-                                onClick={() => {
-                                  navigate(`/editproduct/`);
-                                }}
-                              >
-                                <i className="bi bi-person-fill-add fs-6"></i>
-                              </button>
-                              <button
-                                title="Add Question"
-                                className="btn btn-outline-warning btn-sm"
-                                onClick={() => {
-                                  navigate(`/question`);
-                                }}
-                              >
-                                <i className="bi bi-question-octagon-fill fs-6"></i>
-                              </button>
-                              <button
-                                title="Add"
+                              title="Edit"
                                 className="btn btn-outline-info btn-sm"
                                 onClick={() => {
                                   navigate(`/editproduct/`);
@@ -205,10 +122,40 @@ const Tasks = () => {
                                 <i className="bi bi-pencil fs-6"></i>
                               </button>
                               <button
-                                title="Delete"
+                              title="Delete"
                                 className="btn btn-outline-danger btn-sm"
                                 onClick={() => {
                                   del();
+                                }}
+                              >
+                                <i className="bi bi-trash-fill"></i>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+
+                {data?.length > 0 ? (
+                  data?.map((i,index) => {
+                    return (
+                      <>
+                        <tr>
+                          <td>{index}</td>
+                          <td>{i?.name}</td>
+                          <td>{i?.type}</td>
+                          <td>
+                            <div className="d-flex align-items-center gap-3">
+                              <button
+                                className="btn btn-outline-info btn-sm"
+                                onClick={() => {
+                                  navigate(`/editproduct/${i?._id}`);
+                                }}
+                              >
+                                <i className="bi bi-pencil"></i>
+                              </button>
+                              <button
+                                className="btn btn-outline-danger btn-sm"
+                                onClick={() => {
+                                  del(i?._id);
                                 }}
                               >
                                 <i className="bi bi-trash-fill"></i>
@@ -231,4 +178,4 @@ const Tasks = () => {
   );
 };
 
-export default Tasks;
+export default SubQuestion;

@@ -31,6 +31,12 @@ import EditReports from "./Pages/Reports/EditReports";
 import Performances from "./Pages/Performances/Performances";
 import AddPerformances from "./Pages/Performances/AddPreformances";
 import EditPerformances from "./Pages/Performances/EditPerformances";
+import Question from "./Pages/Question/Question";
+import AddQuestion from "./Pages/Question/AddQuestion";
+import EditQuestion from "./Pages/Question/EditQuestion";
+import SubQuestion from "./Pages/SubQuestion/SubQuestion";
+import AddSubQuestion from "./Pages/SubQuestion/AddSubQuestion";
+import EditSubQuestion from "./Pages/SubQuestion/EditSubQuestion";
 
 function App() {
   toastConfig({ theme: "dark" });
@@ -63,6 +69,12 @@ function App() {
               <Route path="/tasks" element={<Tasks />} />
               <Route path="/addtasks" element={<AddTasks />} />
               <Route path="/edittasks/:id" element={<EditTasks />} />
+              <Route path="/question" element={<Question />} />
+              <Route path="/addquestion" element={<AddQuestion />} />
+              <Route path="/editquestion/:id" element={<EditQuestion />} />
+              <Route path="/subQuestion" element={<SubQuestion />} />
+              <Route path="/addsubQuestion" element={<AddSubQuestion />} />
+              <Route path="/editsubQuestion/:id" element={<EditSubQuestion />} />
               <Route path="/reports" element={<Reports />} />
               <Route path="/addreports" element={<AddReports />} />
               <Route path="/editreports/:id" element={<EditReports/>} />
